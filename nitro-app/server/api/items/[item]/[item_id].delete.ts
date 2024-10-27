@@ -8,11 +8,11 @@ export default defineEventHandler(async (event) => {
   if (item == "persons") {
     for (const item in Object.keys(itemsTables)) {
       if (item == "persons") continue;
-      db.run(sql`DELETE FROM {${item}} WHERE person_id = ${item_id}`);
+      db.execute(sql`DELETE FROM {${item}} WHERE person_id = ${item_id}`);
     }
-    db.run(sql`DELETE FROM persons WHERE id = ${item_id}`);
+    db.execute(sql`DELETE FROM persons WHERE id = ${item_id}`);
     return { message: "success" };
   }
-  db.run(sql`DELETE FROM {${item}} WHERE id = ${item_id}`);
+  db.execute(sql`DELETE FROM {${item}} WHERE id = ${item_id}`);
   return { message: "success" };
 });
