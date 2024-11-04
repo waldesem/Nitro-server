@@ -48,7 +48,7 @@ export default defineEventHandler(async (event) => {
     });
     await db
       .update(users)
-      .set({ attempt: 0, pswd_create: new Date().toISOString() })
+      .set({ attempt: 0, pswd_create: new Date() })
       .where(eq(users.id, user.id));
     await session.update({ ...user });
     return { message: "Success" };

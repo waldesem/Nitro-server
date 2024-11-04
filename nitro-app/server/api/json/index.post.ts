@@ -152,7 +152,7 @@ export default defineEventHandler(async (event) => {
           eq(persons.birthday, anketa.persons.birthday)
         )
       );
-    const results = await query.all();
+    const results = await query.execute();
     const validpersons = itemsSchemas["persons"].parse(anketa.persons);
     if (results.length == 0) {
       Object.assign(anketa.persons, {
@@ -215,7 +215,7 @@ export default defineEventHandler(async (event) => {
     try {
       await db
         .update(persons)
-        .set({ ...anketa.persons, destination: folderName })
+        .set({ ...anketa.persons })
         .where(eq(persons.id, person.id))
         .execute();
     } catch (err) {

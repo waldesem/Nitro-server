@@ -41,7 +41,7 @@ export default defineEventHandler(async (event) => {
     );
     await db
       .update(persons)
-      .set({ destination: folderName })
+      .set({ destination: folderName } as { [key: string]: string })
       .where(eq(persons.id, personId));
     return { person_id: personId };
   }
